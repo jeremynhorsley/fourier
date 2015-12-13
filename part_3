@@ -1,0 +1,39 @@
+% ENGR 315 Lab 6
+% Jeremyn Horsley
+% Part 3, Using freqde function to visualze impulse and freq response
+% of the systems.
+% y' + 5y = 5x(t)
+figure(24);
+den = [1 5];
+num = 5;
+freqde(num,den);
+% y" + 3y' + 2y = 2x(t)
+figure(25);
+den = [1 3 2];
+num = 2;
+freqde(num,den);
+% y" + y' + y = x(t)
+figure(26);
+den = [1 1 1];
+num = 1;
+freqde(num,den);
+% y" + 2y' + y = x(t)
+figure(27);
+den = [1 2 1];   
+num = 1;
+freqde(num,den);
+% y" + y = x(t)
+figure(28);
+den = [1 0 1];
+num = 1;
+freqde(num,den);
+% y"' + 6y" + 11y' + 6y = 6x(t)
+figure(29);
+den = [1 6 11 6]; 
+num = 6;
+freqde(num,den);
+% y"' + 4y" + 21y' + 34y = 34x(t)
+figure(30);
+den = [1 4 21 34]; 
+num = 34;
+freqde(num,den);
