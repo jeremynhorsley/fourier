@@ -1,0 +1,40 @@
+% ENGR 315 Lab 6
+% Jeremyn Horsley
+% freqcos Frequency response of linear system
+% based on measurement of response to cosine
+function freqcos(b,a)
+t = (10/2560)*(0:1:2559); % sampling interval of 10 periods of 256 points per period
+T = 256; %period of 256 points
+f = (0:1:2559)/T; 
+w = 2*pi*f;
+c = cos(w.*t); %array of cos with 2560pts
+s = sin(w.*t); %array of sin with 2560pts
+B = num2str(b);
+A = num2str(a);
+sys = tf(b,a);
+y = lsim(sys,c,t);
+subplot(3,1,1);
+plot(y);
+xlabel('cos(wt)')
+ylabel('Amplitude')
+title(['Response of [',B, ']/ [', A , '] to cos(wt)'])
+grid on;
+% calculate z1, z2 and the magnitude of Hw and its phase
+z1 = (1/T)*(y*c);
+z2 = (1/T)*(y*s);
+Hw = 2*sqrt(z1.^2+z2.^2); %Magnitude of Hw
+angleHw = -atan(z2/z1); %Phase of Hw
+subplot(3,1,2);
+y = 20*log10(Hw);
+semilogx(f,y);
+xlabel('w (rad/s)')
+ylabel('gain (dB)')
+title(['Magnitude |Hw| of [', B, ']/ [',A, ']'])
+grid on;
+subplot(3,1,3);
+semilogx(f,angleHw);
+xlabel('w (rad/s)')
+ylabel('Phase (rad/s)')
+title(['Phase of [', B, ']/ [',A, ']'])
+grid on;
+end
