@@ -1,0 +1,12 @@
+% ENGR 315 Lab 6
+% Jeremyn Horsley
+% Part a1
+% Plot freq response of differential equation
+% y' + (1/RC)y = (1/RC)x
+for n = 1:1:3;
+RC = 1*10^(n-2); % RC = .1, 1, 10
+a = [1 1/RC]; %denominator
+b = 1/RC; %numerator
+figure (n); % creates figures 1, 2, 3
+freqde(b,a);
+end
