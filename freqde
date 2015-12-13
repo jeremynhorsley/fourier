@@ -1,0 +1,23 @@
+% ENGR 315 Lab 6
+% Jeremyn Horsley
+function freqde(b,a)
+% freqde frequency respone of a linear system
+% based on solution of differential equation
+f = logspace(-1,2,100); % generates 100 points between 10^-1 and 10^2
+X = polyval(a, 1i*f); % evaluates polynomial (a) at i*f
+Y = polyval(b, 1i*f);
+H = Y./X; %convolution property H(w) = Fourier{output/input} 
+subplot(2,1,1);
+h = tf(b,a);
+impulse(h);
+grid on;
+B = num2str(b);
+A = num2str(a);
+subplot(2,1,2);
+y = 20*log10(abs(H));
+semilogx(f,y);
+xlabel('w (rad/s)')
+ylabel('gain (dB)')
+title(['Frequency Response of [', B, ']/ [',A, ']'])
+grid on;
+end
